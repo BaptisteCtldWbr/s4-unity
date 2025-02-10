@@ -15,6 +15,8 @@ public class playerMovement : MonoBehaviour
     public LayerMask listGroundLayers;
     public int maxAllowedJump = 3;
     public int currentNumberJumps = 0;
+
+    public bool isFacingRight = true;
     
 
 
@@ -38,6 +40,17 @@ public class playerMovement : MonoBehaviour
 
         if(isGrounded && !Input.GetButton("Jump")){
             currentNumberJumps = 0;
+        }
+        
+        Flip();
+    }
+
+    void Flip(){
+        if(
+            (moveDirectionX < 0 && !isFacingRight) ||
+            (moveDirectionX > 0 && isFacingRight)){
+                transform.Rotate(0, 180, 0);
+                isFacingRight = !isFacingRight;
         }
     }
 
