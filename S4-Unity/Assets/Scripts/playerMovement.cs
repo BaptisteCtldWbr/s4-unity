@@ -29,6 +29,9 @@ public class playerMovement : MonoBehaviour
     {
         moveDirectionX = Input.GetAxis("Horizontal");
         if(Input.GetButtonDown("Jump") && currentNumberJumps < maxAllowedJump){
+            /* if(!isGrounded){
+                currentNumberJumps = 1;
+            } */
             Jump();
             currentNumberJumps++;
         }
@@ -59,5 +62,15 @@ public class playerMovement : MonoBehaviour
             groundCheckRadius,
             listGroundLayers
         );
+    }
+
+    public void OnDrawGizmos(){
+        if(groundCheck != null){
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(
+                groundCheck.position,
+                groundCheckRadius
+            );
+        }
     }
 }
