@@ -31,14 +31,11 @@ public class playerMovement : MonoBehaviour
     {
         moveDirectionX = Input.GetAxis("Horizontal");
         if(Input.GetButtonDown("Jump") && currentNumberJumps < maxAllowedJump){
-            /* if(!isGrounded){
-                currentNumberJumps = 1;
-            } */
-            Jump();
+            Jump();                                         //Saute s'il a le droit
             currentNumberJumps++;
         }
 
-        if(isGrounded && !Input.GetButton("Jump")){
+        if(isGrounded && !Input.GetButton("Jump")){         //reset du nombre de jump s'il est au sol et ne saute pas
             currentNumberJumps = 0;
         }
         
@@ -46,7 +43,7 @@ public class playerMovement : MonoBehaviour
     }
 
     void Flip(){
-        if(
+        if(                                                 //Fonction pour se retourner
             (moveDirectionX < 0 && !isFacingRight) ||
             (moveDirectionX > 0 && isFacingRight)){
                 transform.Rotate(0, 180, 0);
@@ -62,14 +59,14 @@ public class playerMovement : MonoBehaviour
         isGrounded = IsGrounded();
     }
 
-    private void Jump(){
+    private void Jump(){                                    //Saut
         rb.linearVelocity = new Vector2(
             rb.linearVelocity.x,
             jumpForce
         );
     }
 
-    public bool IsGrounded(){
+    public bool IsGrounded(){                               //Vérifie s'il y a le sol dessous
         return Physics2D.OverlapCircle(
             groundCheck.position,
             groundCheckRadius,
@@ -77,7 +74,7 @@ public class playerMovement : MonoBehaviour
         );
     }
 
-    public void OnDrawGizmos(){
+    public void OnDrawGizmos(){                             //Dessine le groundCheckStatus
         if(groundCheck != null){
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(
