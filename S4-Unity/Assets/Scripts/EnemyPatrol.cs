@@ -8,7 +8,7 @@ public class EnemyPatrol : MonoBehaviour
     public LayerMask listObstacleLayers;
     public float groundCheckRadius = 0.15f;
     public bool isFacingRight = true;
-    public float DistanceDetection = 0.1f;
+    public float DistanceDetection = 0.7f;
     
     public void FixedUpdate(){
         rb.linearVelocity = new Vector2(                    //Mouvement de l'enemy
@@ -20,9 +20,10 @@ public class EnemyPatrol : MonoBehaviour
             return;
         }
 
-        if(HasNotTouchedGround()){
+        if(HasNotTouchedGround() || asCollisionWithObstacles()){
             Flip();
         }
+
     }
 
     void Flip(){
@@ -45,3 +46,39 @@ public class EnemyPatrol : MonoBehaviour
             listObstacleLayers
         );
     }
+
+    bool asCollisionWithObstacles(){
+        RaycastHit2D hit = Physics2D.Linecast(
+            bc.bounds.center,
+            bc.bounds.center + new Vector3(
+                DistanceDetection * transform.right.normalized.x,
+                0,
+                0
+            ), listObstacleLayers
+        );
+        return hit.transform != null;
+    }
+
+    public void OnDrawGizmos(){                             //Dessine le groundCheckStatus
+        if(bc != null){
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(
+                bc.bounds.center,
+                bc.bounds.center + new Vector3(
+                    DistanceDetection * transform.right.normalized.x,
+                    0,
+                    0
+                )
+            );
+            Vector2 detectionPosition = new Vector2(
+                bc.bounds.center.x + (transform.right.normalized.x * (bc.bounds.size.x / 2)),
+                bc.bounds.min.y
+            );
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(
+                detectionPosition,
+                groundCheckRadius
+            );
+        }
+    }
+}
