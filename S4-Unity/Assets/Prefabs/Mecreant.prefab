@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1415482230673785446}
   - component: {fileID: 4725637092217763412}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Mecreant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6239407319789108167}
-  moveSpeed: 20
+  moveSpeed: 5
   bc: {fileID: 8717869461246130666}
   listObstacleLayers:
     serializedVersion: 2

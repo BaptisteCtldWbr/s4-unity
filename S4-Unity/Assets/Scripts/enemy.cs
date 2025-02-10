@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class enemy : MonoBehaviour
@@ -11,7 +10,10 @@ public class enemy : MonoBehaviour
             if(listContacts[0].normal.y < -0.5f){
                 Debug.Log("Va en enfer !");
                 Destroy(gameObject);
+            }else {
+                PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+                playerHealth.Hurt();
             }
-        }
+        } 
     }
 }
