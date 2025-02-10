@@ -13,6 +13,8 @@ public class playerMovement : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public bool isGrounded = false;
     public LayerMask listGroundLayers;
+    public int maxAllowedJump = 3;
+    public int currentNumberJumps = 0;
     
 
 
@@ -26,8 +28,13 @@ public class playerMovement : MonoBehaviour
     void Update()                                           //Ne pas faire de physique, problème de timing / vitesse, cette focntion est appelée selon le FPS
     {
         moveDirectionX = Input.GetAxis("Horizontal");
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){  //ou "Jump" mais ça fonctionne pas
+        if(Input.GetButtonDown("Jump") && currentNumberJumps < maxAllowedJump){
             Jump();
+            currentNumberJumps++;
+        }
+
+        if(isGrounded && !Input.GetButton("Jump")){
+            currentNumberJumps = 0;
         }
     }
 
