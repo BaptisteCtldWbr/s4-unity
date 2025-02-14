@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public BoxCollider2D bc;
     public float moveDirectionX = 0f;
     public float moveSpeed = 10f;
     public float jumpForce = 7f;
@@ -36,6 +37,8 @@ public class playerMovement : MonoBehaviour
     }
 
     void Die(){
+        bc.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
         enabled = false;
     }
 
