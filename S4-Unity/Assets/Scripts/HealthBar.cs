@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {   
     public Image fillImage;
-    public PlayerHealth healthPlayer;
+    public PlayerData dataPlayer;
     public Gradient lifeColorGradient;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float lifeRatio = (float) healthPlayer.currentLifePoints /  (float) healthPlayer.maxLifePoints;
+        float lifeRatio = (float) dataPlayer.currentLifePoints /  (float) dataPlayer.maxLifePoints;
         fillImage.fillAmount = lifeRatio;
         fillImage.color = lifeColorGradient.Evaluate(lifeRatio);
     }

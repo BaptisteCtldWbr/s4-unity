@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillImage: {fileID: 4060885712772818371}
-  healthPlayer: {fileID: 0}
+  dataPlayer: {fileID: 11400000, guid: 8473689ba35eb3441850513e356a35cf, type: 2}
   lifeColorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.12189148, b: 0, a: 1}

@@ -1039,8 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7d18772a532e34d941cbbc0e5651e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLifePoints: 5
-  currentLifePoints: 3
+  dataPlayer: {fileID: 11400000, guid: 8473689ba35eb3441850513e356a35cf, type: 2}
   isInvulnerable: 0
   invulnerableTime: 2.25
   invulnerableFlash: 0.2
