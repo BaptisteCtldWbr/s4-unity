@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1887a4de089c9774d89ff087f044f0ff, type: 3}
-  m_Name: Player1Data
+  m_Script: {fileID: 11500000, guid: f5bf7acf796f3eb4a93479953af0ce17, type: 3}
+  m_Name: onPlayerDeath
   m_EditorClassIdentifier: 
-  currentLifePoints: -166
-  maxLifePoints: 2

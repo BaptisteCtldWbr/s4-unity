@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     public float invulnerableTime = 2.25f;
     public float invulnerableFlash = 0.2f;
     public SpriteRenderer sr;
+    public VoidEventChannel onPlayerDeath;
+    
 
     void Start(){
         dataPlayer.currentLifePoints = dataPlayer.maxLifePoints;
@@ -20,8 +22,9 @@ public class PlayerHealth : MonoBehaviour
         dataPlayer.currentLifePoints = dataPlayer.currentLifePoints - damage;
         Debug.Log("Perte de "+damage+"pts de vie - Totale à "+ dataPlayer.currentLifePoints);
         if(dataPlayer.currentLifePoints <= 0){
+            onPlayerDeath.Raise();
             Debug.Log("sale naze");
-            Destroy(gameObject);
+            // Destroy(gameObject);
         } else {
             StartCoroutine(Invulnerable());
         }
