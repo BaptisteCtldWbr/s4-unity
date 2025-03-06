@@ -9,12 +9,16 @@ public class EnemyPatrol : MonoBehaviour
     public float groundCheckRadius = 0.15f;
     public bool isFacingRight = true;
     public float DistanceDetection = 0.7f;
+
+    public Animator animator;
     
     public void FixedUpdate(){
         rb.linearVelocity = new Vector2(                    //Mouvement de l'enemy
             moveSpeed * transform.right.normalized.x,
             rb.linearVelocity.y
         );
+
+        animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocityX));
 
         if(rb.linearVelocityY != 0){
             return;
