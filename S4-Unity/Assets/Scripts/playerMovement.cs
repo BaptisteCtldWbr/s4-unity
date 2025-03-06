@@ -19,6 +19,8 @@ public class playerMovement : MonoBehaviour
 
     public bool isFacingRight = true;
 
+    public Animator animator;
+
     public VoidEventChannel onPlayerDeath;
     private void OnEnable()
     {
@@ -45,6 +47,8 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()                                           //Ne pas faire de physique, problème de timing / vitesse, cette focntion est appelée selon le FPS
     {
+        animator.SetFloat("VelocityX", rb.linearVelocityX);
+
         moveDirectionX = Input.GetAxis("Horizontal");
         if(Input.GetButtonDown("Jump") && currentNumberJumps < maxAllowedJump){
             Jump();                                         //Saute s'il a le droit
