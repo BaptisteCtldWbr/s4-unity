@@ -47,11 +47,16 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()                                           //Ne pas faire de physique, problème de timing / vitesse, cette focntion est appelée selon le FPS
     {
-        animator.SetFloat("VelocityX", rb.linearVelocityX);
+        animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocityX));
+        animator.SetFloat("VelocityY", rb.linearVelocityY);
+        animator.SetBool("IsGrounded", isGrounded);
 
         moveDirectionX = Input.GetAxis("Horizontal");
         if(Input.GetButtonDown("Jump") && currentNumberJumps < maxAllowedJump){
             Jump();                                         //Saute s'il a le droit
+            if(currentNumberJumps > 1){
+                animator.SetTrigger("DoubleJump");
+            }
             currentNumberJumps++;
         }
 
